@@ -2,6 +2,11 @@ let currentPage = 'home';
 let currentCategory = '';
 let currentSubcategory = '';
 
+// Which fragment file renders a given nav page type.
+function pageFileFor(page) {
+    return page === 'lessons' ? 'lessons.html' : 'gallery.html';
+}
+
 // Initialize the application
 function init() {
     setupNavigation();
@@ -31,8 +36,24 @@ function setupNavigation() {
             } else {
                 toggleNavItem(link.parentElement);
                 if (page === 'menu') {
+                    // Parent category with sub-galleries: open its first gallery.
                     currentCategory = category;
-                    loadPage('menu.html');
+                    const firstSub = link.parentElement.querySelector('.nav-sublink');
+                    if (firstSub) {
+                        currentSubcategory = firstSub.dataset.subcategory;
+                        loadPage(pageFileFor(firstSub.dataset.page));
+                        updateBreadcrumb([
+                            'Home',
+                            getCategoryDisplayName(category),
+                            getSubcategoryDisplayName(currentSubcategory)
+                        ]);
+                        setActiveNav(firstSub);
+                    }
+                } else if (page === 'gallery') {
+                    // Single-gallery category (Community, Personal, Programming).
+                    currentCategory = category;
+                    currentSubcategory = category;
+                    loadPage('gallery.html');
                     updateBreadcrumb(['Home', getCategoryDisplayName(category)]);
                     setActiveNav(link);
                 }
@@ -47,13 +68,13 @@ function setupNavigation() {
             const subcategory = sublink.dataset.subcategory;
             const page = sublink.dataset.page;
             
-            if (page === 'sub_menu') {
+            if (page === 'gallery' || page === 'lessons' || page === 'sub_menu') {
                 currentCategory = category;
                 currentSubcategory = subcategory;
-                loadPage('sub_menu.html');
+                loadPage(pageFileFor(page));
                 updateBreadcrumb([
-                    'Home', 
-                    getCategoryDisplayName(category), 
+                    'Home',
+                    getCategoryDisplayName(category),
                     getSubcategoryDisplayName(subcategory)
                 ]);
                 setActiveNav(sublink);
@@ -164,10 +185,11 @@ function updateBreadcrumb(items) {
 function getCategoryDisplayName(category) {
     const names = {
         'art': 'Art',
-        'programming': 'Programming Projects',
-        'ai-projects': 'AI Projects',
-        'cpp-level1': 'C++ Programming Level 1',
-        'cpp-level2': 'C++ Programming Level 2'
+        'activities': 'Activities',
+        'community': 'Community & School',
+        'personal': 'Personal',
+        'cpp-classes': 'C++ Classes',
+        'programming': 'Programming Projects'
     };
     return names[category] || category;
 }
@@ -175,33 +197,19 @@ function getCategoryDisplayName(category) {
 // Get display name for subcategory
 function getSubcategoryDisplayName(subcategory) {
     const names = {
-        // Art subcategories
-        'digital-art': 'Digital Art',
+        // Art
         'paintings': 'Paintings',
-        'sketches': 'Sketches',
+        'drawings': 'Drawings & Sketches',
+        'printmaking': 'Printmaking',
         'photography': 'Photography',
-        // Programming subcategories
-        'web-apps': 'Web Applications',
-        'mobile-apps': 'Mobile Apps',
-        'desktop-apps': 'Desktop Applications',
-        'games': 'Games',
-        // AI subcategories
-        'machine-learning': 'Machine Learning',
-        'computer-vision': 'Computer Vision',
-        'nlp': 'Natural Language Processing',
-        'neural-networks': 'Neural Networks',
-        // C++ Level 1 subcategories
-        'basics': 'Basics & Syntax',
-        'control-structures': 'Control Structures',
-        'functions': 'Functions',
-        'arrays-strings': 'Arrays & Strings',
-        'simple-projects': 'Simple Projects',
-        // C++ Level 2 subcategories
-        'oop': 'Object-Oriented Programming',
-        'data-structures': 'Data Structures',
-        'algorithms': 'Algorithms',
-        'templates': 'Templates & STL',
-        'advanced-projects': 'Advanced Projects'
+        'awards': 'Scholastic Awards',
+        // Activities
+        'badminton': 'Badminton',
+        'juggling': 'Juggling',
+        'chess': 'Chess',
+        // C++ Classes
+        'cpp-beginner': 'Beginner',
+        'cpp-advanced': 'Advanced'
     };
     return names[subcategory] || subcategory;
 }

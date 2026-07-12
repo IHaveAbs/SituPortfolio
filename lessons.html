@@ -1,0 +1,77 @@
+<!-- Reusable C++ lessons fragment. Loaded into #content-frame by script.js.
+     Reads the current subcategory from window.getCurrentContext() and renders
+     window.LESSONS[key]. Styles live in styles.css. -->
+<div class="lessons-container">
+    <h1 class="gallery-title" id="lessonsTitle">C++ Classes</h1>
+    <p class="gallery-intro" id="lessonsIntro" style="display:none;"></p>
+    <div class="lessons-grid" id="lessons"></div>
+</div>
+
+<script>
+(function () {
+    var ctx = (typeof window.getCurrentContext === "function") ? window.getCurrentContext() : {};
+    var key = ctx.subcategory || ctx.category;
+    var data = (window.LESSONS && window.LESSONS[key]) || null;
+
+    var titleEl = document.getElementById("lessonsTitle");
+    var introEl = document.getElementById("lessonsIntro");
+    var grid = document.getElementById("lessons");
+
+    if (!data) {
+        titleEl.textContent = "Coming soon";
+        grid.innerHTML = '<div class="coming-soon">This class doesn\'t have any lessons yet.</div>';
+        return;
+    }
+
+    titleEl.textContent = data.title || "C++ Classes";
+    if (data.intro) { introEl.textContent = data.intro; introEl.style.display = "block"; }
+
+    function esc(s) {
+        return String(s == null ? "" : s)
+            .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+    }
+
+    (data.lessons || []).forEach(function (lesson) {
+        var card = document.createElement("div");
+        card.className = "lesson-card";
+        var id = lesson.video;
+        var thumb = "https://img.youtube.com/vi/" + esc(id) + "/hqdefault.jpg";
+
+        var materialHTML = lesson.material
+            ? '<a class="lesson-btn" href="' + esc(lesson.material) + '" target="_blank" rel="noopener">📊 Slides</a>'
+            : '<span class="lesson-btn disabled">Slides coming soon</span>';
+
+        card.innerHTML =
+            '<div class="lesson-header">Lesson ' + esc(lesson.n) + '</div>' +
+            '<div class="lesson-video" data-id="' + esc(id) + '" role="button" tabindex="0" aria-label="Play Lesson ' + esc(lesson.n) + ' video">' +
+                '<img class="lesson-thumb" loading="lazy" src="' + thumb + '" alt="Lesson ' + esc(lesson.n) + ' video">' +
+                '<span class="lesson-play">▶</span>' +
+            '</div>' +
+            '<div class="lesson-links">' +
+                materialHTML +
+                '<a class="lesson-btn ghost" href="https://youtu.be/' + esc(id) + '" target="_blank" rel="noopener">▶ YouTube</a>' +
+            '</div>';
+        grid.appendChild(card);
+    });
+
+    function playVideo(box) {
+        var id = box.getAttribute("data-id");
+        if (!id || box.dataset.loaded) return;
+        box.dataset.loaded = "1";
+        box.innerHTML =
+            '<iframe src="https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0" ' +
+            'title="C++ lesson video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" ' +
+            'allowfullscreen></iframe>';
+    }
+
+    grid.addEventListener("click", function (e) {
+        var box = e.target.closest(".lesson-video");
+        if (box) playVideo(box);
+    });
+    grid.addEventListener("keydown", function (e) {
+        if (e.key !== "Enter" && e.key !== " ") return;
+        var box = e.target.closest(".lesson-video");
+        if (box) { e.preventDefault(); playVideo(box); }
+    });
+})();
+</script>
