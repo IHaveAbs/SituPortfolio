@@ -1,0 +1,51 @@
+<!-- Reusable Projects fragment. Loaded into #content-frame by script.js.
+     Renders window.PROJECTS. Styles live in styles.css. -->
+<div class="projects-container">
+    <h1 class="gallery-title">Projects</h1>
+    <p class="gallery-intro">Things I've built — mostly games and tools written from scratch.</p>
+    <div class="projects-grid" id="projects"></div>
+</div>
+
+<script>
+(function () {
+    var grid = document.getElementById("projects");
+    var projects = window.PROJECTS || [];
+
+    if (!projects.length) {
+        grid.innerHTML = '<div class="coming-soon">Projects coming soon.</div>';
+        return;
+    }
+
+    function esc(s) {
+        return String(s == null ? "" : s)
+            .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+    }
+
+    projects.forEach(function (p) {
+        var tags = (p.tags || []).map(function (t) {
+            return '<span class="project-tag">' + esc(t) + "</span>";
+        }).join("");
+
+        var links = "";
+        if (p.repo) links += '<a class="lesson-btn" href="' + esc(p.repo) + '" target="_blank" rel="noopener">View on GitHub</a>';
+        if (p.demo) links += '<a class="lesson-btn ghost" href="' + esc(p.demo) + '" target="_blank" rel="noopener">Live demo</a>';
+
+        var imageHTML = p.image
+            ? '<a href="' + esc(p.repo || "#") + '" target="_blank" rel="noopener" class="project-image">' +
+                  '<img loading="lazy" src="' + esc(p.image) + '" alt="' + esc(p.title) + ' screenshot"></a>'
+            : "";
+
+        var card = document.createElement("div");
+        card.className = "project-card";
+        card.innerHTML =
+            imageHTML +
+            '<div class="project-body">' +
+                '<h2 class="project-title">' + esc(p.title) + "</h2>" +
+                '<div class="project-tags">' + tags + "</div>" +
+                '<p class="project-desc">' + esc(p.description) + "</p>" +
+                '<div class="lesson-links">' + links + "</div>" +
+            "</div>";
+        grid.appendChild(card);
+    });
+})();
+</script>

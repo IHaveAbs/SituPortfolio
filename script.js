@@ -4,7 +4,9 @@ let currentSubcategory = '';
 
 // Which fragment file renders a given nav page type.
 function pageFileFor(page) {
-    return page === 'lessons' ? 'lessons.html' : 'gallery.html';
+    if (page === 'lessons') return 'lessons.html';
+    if (page === 'projects') return 'projects.html';
+    return 'gallery.html';
 }
 
 // Initialize the application
@@ -49,11 +51,11 @@ function setupNavigation() {
                         ]);
                         setActiveNav(firstSub);
                     }
-                } else if (page === 'gallery') {
-                    // Single-gallery category (Community, Personal, Programming).
+                } else if (page === 'gallery' || page === 'projects') {
+                    // Single-page category (Community, Personal, Projects).
                     currentCategory = category;
                     currentSubcategory = category;
-                    loadPage('gallery.html');
+                    loadPage(pageFileFor(page));
                     updateBreadcrumb(['Home', getCategoryDisplayName(category)]);
                     setActiveNav(link);
                 }
@@ -189,7 +191,7 @@ function getCategoryDisplayName(category) {
         'community': 'Community & School',
         'personal': 'Personal',
         'cpp-classes': 'C++ Classes',
-        'programming': 'Programming Projects'
+        'projects': 'Projects'
     };
     return names[category] || category;
 }

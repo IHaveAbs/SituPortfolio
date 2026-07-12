@@ -600,3 +600,58 @@ body {
 @media (max-width: 768px) {
     .lessons-grid { grid-template-columns: 1fr; }
 }
+
+/* Videos row inside a photo gallery (reuses .lesson-video/.lesson-thumb/.lesson-play) */
+.gallery-videos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 460px));
+    gap: 20px;
+    margin: 10px 0 26px;
+}
+.gallery-videos:empty { display: none; }
+.gallery-videos .lesson-video { border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); }
+
+/* =========================================================
+   Projects page (loaded via projects.html into #content-frame)
+   ========================================================= */
+.projects-container { max-width: 1000px; margin: 0 auto; }
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 28px;
+    margin: 20px 0 40px;
+}
+
+.project-card {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.project-image { display: block; background: #000; }
+.project-image img { width: 100%; height: 100%; min-height: 210px; object-fit: cover; display: block; }
+
+.project-body { padding: 22px 26px; }
+.project-title { margin: 0 0 10px; color: #333; font-weight: 600; }
+.project-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+.project-tag {
+    font-size: 12px;
+    font-weight: 600;
+    color: #667eea;
+    background: #eef0ff;
+    border-radius: 999px;
+    padding: 3px 11px;
+}
+.project-desc { color: #555; line-height: 1.65; margin: 0 0 18px; }
+.project-body .lesson-links { padding: 0; }
+.project-body .lesson-btn { flex: 0 0 auto; padding: 9px 20px; }
+
+@media (max-width: 700px) {
+    .project-card { grid-template-columns: 1fr; }
+    .project-image img { height: 200px; min-height: 0; }
+}

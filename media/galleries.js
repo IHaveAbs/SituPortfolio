@@ -53,6 +53,9 @@ window.GALLERIES = {
   },
   printmaking: {
     title: "Printmaking — Woodblock & Linocut",
+    videos: [
+      { id: "vNt0RV7xbME", title: "Carving a woodblock" }
+    ],
     items: [
       { src: "media/photos/art/printmaking/print-reaching-hands-linocut.jpg", title: "Reaching Hands", description: "A bold black-and-white linocut of a hooded figure amid swirling hands." },
       { src: "media/photos/art/printmaking/print-sunflower.jpg", title: "Sunflower", description: "A woodblock print of a single bold sunflower." },
@@ -111,7 +114,9 @@ window.GALLERIES = {
   },
   juggling: {
     title: "Juggling",
-    videoPlaceholder: true,
+    videos: [
+      { id: "KhB_bZHoecI", title: "Juggling" }
+    ],
     items: [
       { src: "media/photos/activities/juggling/juggling-outdoor-practice.jpg", title: "Outdoor Practice", description: "Juggling beanbags with friends on a sunny lawn." },
       { src: "media/photos/activities/juggling/juggling-devil-stick.jpg", title: "Devil Stick", description: "Balancing a devil stick at a park meetup." }
@@ -145,12 +150,5 @@ window.GALLERIES = {
       { src: "media/photos/personal/personal-family-portrait.jpg", title: "Family", description: "A family portrait." },
       { src: "media/photos/personal/personal-family-portrait-2.jpg", title: "Family", description: "A family portrait at home." }
     ]
-  },
-
-  // ---------- PLACEHOLDER ----------
-  programming: {
-    title: "Programming Projects",
-    placeholder: true,
-    message: "Coming soon — write-ups of projects like HoopDuels and more are on the way."
   }
 };

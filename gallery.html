@@ -4,6 +4,7 @@
 <div class="gallery-container">
     <h1 class="gallery-title" id="galleryTitle">Gallery</h1>
     <p class="gallery-intro" id="galleryIntro" style="display:none;"></p>
+    <div class="gallery-videos" id="galleryVideos"></div>
     <div class="gallery-grid" id="gallery"></div>
 </div>
 
@@ -52,23 +53,38 @@
 
     var images = data.items || [];
 
-    // Optional "videos coming soon" card at the front of the grid.
-    if (data.videoPlaceholder) {
-        var vp = document.createElement("div");
-        vp.className = "gallery-item video-placeholder";
-        vp.innerHTML =
-            '<div class="video-placeholder-inner">' +
-            '<div class="video-placeholder-icon">🎬</div>' +
-            '<div class="video-placeholder-text">Videos coming soon</div>' +
-            "</div>";
-        grid.appendChild(vp);
-    }
-
     function esc(s) {
         return String(s == null ? "" : s)
             .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
             .replace(/"/g, "&quot;");
     }
+
+    // Render videos (YouTube, click-to-play) above the photo grid.
+    var videosEl = document.getElementById("galleryVideos");
+    function playVideo(box) {
+        var id = box.getAttribute("data-id");
+        if (!id || box.dataset.loaded) return;
+        box.dataset.loaded = "1";
+        box.innerHTML =
+            '<iframe src="https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0" ' +
+            'title="video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" ' +
+            'allowfullscreen></iframe>';
+    }
+    (data.videos || []).forEach(function (v) {
+        var card = document.createElement("div");
+        card.className = "lesson-video";
+        card.setAttribute("data-id", v.id);
+        card.setAttribute("role", "button");
+        card.setAttribute("tabindex", "0");
+        card.innerHTML =
+            '<img class="lesson-thumb" loading="lazy" src="https://img.youtube.com/vi/' + esc(v.id) + '/hqdefault.jpg" alt="' + esc(v.title || "Video") + '">' +
+            '<span class="lesson-play">▶</span>';
+        card.addEventListener("click", function () { playVideo(card); });
+        card.addEventListener("keydown", function (e) {
+            if (e.key === "Enter" || e.key === " ") { e.preventDefault(); playVideo(card); }
+        });
+        videosEl.appendChild(card);
+    });
 
     images.forEach(function (image, index) {
         var item = document.createElement("div");
