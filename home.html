@@ -1,51 +1,78 @@
-<div style="padding: 40px; text-align: center; max-width: 900px; margin: 0 auto;">
-    <h1 style="color: #333; font-size: 3em; margin-bottom: 20px; font-weight: 300;">
-        Welcome to Situ's Portfolio
-    </h1>
-
-    <p style="font-size: 1.2em; color: #666; margin-bottom: 40px; line-height: 1.6;">
-        A look at what I make and do — award-winning art, sports and hobbies, community work,
-        and coding projects. Use the menu on the left to explore each gallery.
-    </p>
-
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 30px; margin-top: 50px;">
-        <div style="background: linear-gradient(135deg, #ff6b6b, #ee5a24); color: white; padding: 30px; border-radius: 15px; text-align: center;">
-            <h3 style="margin-bottom: 15px;">🎨 Art</h3>
-            <p>Paintings, drawings, printmaking, and Scholastic Art Awards</p>
-        </div>
-
-        <div style="background: linear-gradient(135deg, #f6b73c, #eb4d4b); color: white; padding: 30px; border-radius: 15px; text-align: center;">
-            <h3 style="margin-bottom: 15px;">🤹 Activities</h3>
-            <p>Badminton, juggling, and chess</p>
-        </div>
-
-        <div style="background: linear-gradient(135deg, #00d2d3, #54a0ff); color: white; padding: 30px; border-radius: 15px; text-align: center;">
-            <h3 style="margin-bottom: 15px;">🤝 Community &amp; School</h3>
-            <p>Volunteering, service, and school moments</p>
-        </div>
-
-        <div style="background: linear-gradient(135deg, #a55eea, #778beb); color: white; padding: 30px; border-radius: 15px; text-align: center;">
-            <h3 style="margin-bottom: 15px;">🧩 Personal</h3>
-            <p>Building, making, and everyday curiosity</p>
-        </div>
-
-        <div style="background: linear-gradient(135deg, #11998e, #38ef7d); color: white; padding: 30px; border-radius: 15px; text-align: center;">
-            <h3 style="margin-bottom: 15px;">📚 C++ Classes</h3>
-            <p>Beginner &amp; advanced lessons with slides and videos</p>
-        </div>
-
-        <div style="background: linear-gradient(135deg, #4834d4, #686de0); color: white; padding: 30px; border-radius: 15px; text-align: center;">
-            <h3 style="margin-bottom: 15px;">💻 Projects</h3>
-            <p>Games and tools I've built — IQ Car and HoopDuels</p>
-        </div>
-    </div>
-
-    <div style="margin-top: 60px; padding: 30px; background-color: #f8f9fa; border-radius: 15px;">
-        <h2 style="color: #333; margin-bottom: 20px;">About This Portfolio</h2>
-        <p style="color: #666; line-height: 1.8;">
-            This portfolio showcases my journey across art and technology — from paintings and
-            woodblock prints that earned Scholastic Art Awards, to the sports, hobbies, and community
-            work that shape who I am. Each section collects a few of my favorite pieces and moments.
-        </p>
-    </div>
+<div class="home-hero">
+    <h1>Situ Zhao</h1>
+    <p>Artist · C++ teacher · builder · varsity athlete — a look at what I do.</p>
 </div>
+
+<div class="showcase-grid" id="showcase"></div>
+
+<script>
+(function () {
+    var tiles = [
+        // Row 1
+        { type: "nav", img: "media/photos/community/community-shelter-juggling.jpg",
+          title: "Teaching Juggling at the Shelter", sub: "Community service", badge: "Service",
+          go: { category: "community", subcategory: "community", page: "gallery" } },
+        { type: "video", id: "KhB_bZHoecI", title: "Juggling", sub: "Watch me juggle", badge: "▶ Video" },
+        { type: "nav", img: "media/photos/activities/badminton/badminton-at-the-net.jpg",
+          title: "Varsity Badminton", sub: "2025–26 · champion team", badge: "Sports",
+          go: { category: "activities", subcategory: "badminton", page: "gallery" } },
+        // Row 2
+        { type: "nav", img: "https://img.youtube.com/vi/zy1Xu0EkC6I/hqdefault.jpg",
+          title: "Teaching C++ — Beginners", sub: "10-lesson class", badge: "Teaching",
+          go: { category: "cpp-classes", subcategory: "cpp-beginner", page: "lessons" } },
+        { type: "nav", img: "media/photos/art/printmaking/print-seated-figures-interior.jpg",
+          title: "Seated Figures", sub: "Woodblock print — carving", badge: "Art",
+          go: { category: "art", subcategory: "printmaking", page: "gallery" } },
+        { type: "nav", img: "https://img.youtube.com/vi/c5xMl1FOZ70/hqdefault.jpg",
+          title: "Teaching C++ — Advanced", sub: "10-lesson class", badge: "Teaching",
+          go: { category: "cpp-classes", subcategory: "cpp-advanced", page: "lessons" } },
+        // Row 3
+        { type: "nav", img: "media/photos/art/paintings/painting-mirror-lake-silver-key.jpg",
+          title: "Mirror Lake", sub: "Scholastic Silver Key", badge: "Art",
+          go: { category: "art", subcategory: "paintings", page: "gallery" } },
+        { type: "nav", img: "media/projects/iqcar.jpg",
+          title: "IQ Car", sub: "Java puzzle game", badge: "Project",
+          go: { category: "projects", subcategory: "projects", page: "projects" } },
+        { type: "nav", img: "media/projects/hoopduels.jpg",
+          title: "HoopDuels", sub: "Java basketball game", badge: "Project",
+          go: { category: "projects", subcategory: "projects", page: "projects" } }
+    ];
+
+    function esc(s) {
+        return String(s == null ? "" : s)
+            .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+    }
+
+    var grid = document.getElementById("showcase");
+    tiles.forEach(function (t) {
+        var src = t.type === "video" ? ("https://img.youtube.com/vi/" + t.id + "/hqdefault.jpg") : t.img;
+        var tile = document.createElement("div");
+        tile.className = "showcase-tile";
+        tile.innerHTML =
+            '<img loading="lazy" src="' + esc(src) + '" alt="' + esc(t.title) + '">' +
+            (t.type === "video" ? '<span class="showcase-play">▶</span>' : "") +
+            (t.badge ? '<span class="showcase-badge">' + esc(t.badge) + "</span>" : "") +
+            '<div class="showcase-overlay">' +
+            '<div class="showcase-title">' + esc(t.title) + "</div>" +
+            (t.sub ? '<div class="showcase-sub">' + esc(t.sub) + "</div>" : "") +
+            "</div>";
+
+        if (t.type === "video") {
+            tile.addEventListener("click", function () {
+                if (tile.dataset.loaded) return;
+                tile.dataset.loaded = "1";
+                tile.innerHTML =
+                    '<iframe src="https://www.youtube.com/embed/' + t.id + '?autoplay=1&rel=0" ' +
+                    'title="' + esc(t.title) + '" frameborder="0" ' +
+                    'allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" ' +
+                    "allowfullscreen></iframe>";
+            });
+        } else {
+            tile.addEventListener("click", function () {
+                if (window.goTo) window.goTo(t.go);
+            });
+        }
+        grid.appendChild(tile);
+    });
+})();
+</script>

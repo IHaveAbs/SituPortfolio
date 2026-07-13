@@ -12,94 +12,98 @@ function pageFileFor(page) {
 // Initialize the application
 function init() {
     setupNavigation();
-    loadPage('home.html');
-    updateBreadcrumb(['Home']);
+    goTo({ category: 'home', page: 'home' });
 }
 
 // Setup navigation event listeners
 function setupNavigation() {
-    const navLinks = document.querySelectorAll('.nav-link');
-    const navSublinks = document.querySelectorAll('.nav-sublink');
-    
-    navLinks.forEach(link => {
+    // Site title -> Home
+    const title = document.querySelector('.site-title');
+    if (title) title.addEventListener('click', () => goTo({ category: 'home', page: 'home' }));
+
+    // Hamburger (mobile) toggles the menu
+    const toggle = document.querySelector('.nav-toggle');
+    if (toggle) toggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        document.querySelector('.nav-menu').classList.toggle('show');
+    });
+
+    document.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
             const category = link.dataset.category;
             const page = link.dataset.page;
-            
-            if (category === 'home') {
-                loadPage('home.html');
-                updateBreadcrumb(['Home']);
-                setActiveNav(link);
-                // Close all expanded menus
-                document.querySelectorAll('.nav-item').forEach(item => {
-                    item.classList.remove('expanded');
-                });
+            const hasSubmenu = !!link.parentElement.querySelector('.nav-submenu');
+            if (page === 'menu' && hasSubmenu) {
+                toggleDropdown(link.parentElement);        // open dropdown; don't navigate
             } else {
-                toggleNavItem(link.parentElement);
-                if (page === 'menu') {
-                    // Parent category with sub-galleries: open its first gallery.
-                    currentCategory = category;
-                    const firstSub = link.parentElement.querySelector('.nav-sublink');
-                    if (firstSub) {
-                        currentSubcategory = firstSub.dataset.subcategory;
-                        loadPage(pageFileFor(firstSub.dataset.page));
-                        updateBreadcrumb([
-                            'Home',
-                            getCategoryDisplayName(category),
-                            getSubcategoryDisplayName(currentSubcategory)
-                        ]);
-                        setActiveNav(firstSub);
-                    }
-                } else if (page === 'gallery' || page === 'projects') {
-                    // Single-page category (Community, Personal, Projects).
-                    currentCategory = category;
-                    currentSubcategory = category;
-                    loadPage(pageFileFor(page));
-                    updateBreadcrumb(['Home', getCategoryDisplayName(category)]);
-                    setActiveNav(link);
-                }
+                goTo({ category, subcategory: category, page });
             }
         });
     });
-    
-    navSublinks.forEach(sublink => {
+
+    document.querySelectorAll('.nav-sublink').forEach(sublink => {
         sublink.addEventListener('click', (e) => {
             e.preventDefault();
             const category = sublink.closest('.nav-item').querySelector('.nav-link').dataset.category;
-            const subcategory = sublink.dataset.subcategory;
-            const page = sublink.dataset.page;
-            
-            if (page === 'gallery' || page === 'lessons' || page === 'sub_menu') {
-                currentCategory = category;
-                currentSubcategory = subcategory;
-                loadPage(pageFileFor(page));
-                updateBreadcrumb([
-                    'Home',
-                    getCategoryDisplayName(category),
-                    getSubcategoryDisplayName(subcategory)
-                ]);
-                setActiveNav(sublink);
-            }
+            goTo({ category, subcategory: sublink.dataset.subcategory, page: sublink.dataset.page });
         });
+    });
+
+    // Close open menus when clicking outside the top bar
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.top-panel')) closeMenus();
     });
 }
 
-// Toggle navigation item expansion
-function toggleNavItem(navItem) {
-    const isExpanded = navItem.classList.contains('expanded');
-    
-    // Close all other nav items
-    document.querySelectorAll('.nav-item').forEach(item => {
-        if (item !== navItem) {
-            item.classList.remove('expanded');
-        }
-    });
-    
-    // Toggle current item
-    if (!isExpanded) {
-        navItem.classList.add('expanded');
+// Programmatic navigation — used by both the top menu and the Home showcase tiles.
+function goTo({ category, subcategory, page }) {
+    currentCategory = category;
+    currentSubcategory = subcategory || category;
+    currentPage = page;
+
+    if (category === 'home') {
+        loadPage('home.html');
+        updateBreadcrumb(['Home']);
+    } else if (subcategory && subcategory !== category) {
+        loadPage(pageFileFor(page));
+        updateBreadcrumb(['Home', getCategoryDisplayName(category), getSubcategoryDisplayName(subcategory)]);
+    } else {
+        loadPage(pageFileFor(page));
+        updateBreadcrumb(['Home', getCategoryDisplayName(category)]);
     }
+
+    highlightNav(category, subcategory);
+    closeMenus();
+    window.scrollTo(0, 0);
+}
+window.goTo = goTo;
+
+// Toggle a top-level dropdown (closing any other open one)
+function toggleDropdown(navItem) {
+    const willOpen = !navItem.classList.contains('open');
+    document.querySelectorAll('.nav-item.open').forEach(i => i.classList.remove('open'));
+    if (willOpen) navItem.classList.add('open');
+}
+
+// Close all dropdowns and the mobile menu
+function closeMenus() {
+    document.querySelectorAll('.nav-item.open').forEach(i => i.classList.remove('open'));
+    const menu = document.querySelector('.nav-menu');
+    if (menu) menu.classList.remove('show');
+}
+
+// Highlight the menu item matching a destination
+function highlightNav(category, subcategory) {
+    let el;
+    if (category === 'home') {
+        el = document.querySelector('.nav-link[data-category="home"]');
+    } else if (subcategory && subcategory !== category) {
+        el = document.querySelector('.nav-sublink[data-subcategory="' + subcategory + '"]');
+    } else {
+        el = document.querySelector('.nav-link[data-category="' + category + '"]');
+    }
+    if (el) setActiveNav(el);
 }
 
 // Set active navigation state

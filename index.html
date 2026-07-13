@@ -8,17 +8,10 @@
 </head>
 <body>
     <div class="main-container">
-        <!-- Top Panel -->
+        <!-- Top navigation bar -->
         <header class="top-panel">
             <h1 class="site-title">Situ's Home</h1>
-            <div class="breadcrumb" id="breadcrumb">
-                <span class="breadcrumb-item active">Home</span>
-            </div>
-        </header>
-
-        <!-- Left Navigation Panel -->
-        <nav class="nav-panel">
-            <!-- Removed the Gallery title -->
+            <button class="nav-toggle" aria-label="Toggle menu">&#9776;</button>
             <ul class="nav-menu">
                 <li class="nav-item">
                     <a href="#" class="nav-link" data-category="home" data-page="home">
@@ -82,9 +75,16 @@
                     </a>
                 </li>
             </ul>
-        </nav>
+        </header>
 
-        <!-- Right Content Panel -->
+        <!-- Breadcrumb -->
+        <div class="breadcrumb-bar">
+            <div class="breadcrumb" id="breadcrumb">
+                <span class="breadcrumb-item active">Home</span>
+            </div>
+        </div>
+
+        <!-- Content -->
         <main class="content-panel">
             <div id="content-frame">
                 <!-- Content will be loaded here -->

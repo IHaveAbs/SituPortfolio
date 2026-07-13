@@ -135,6 +135,7 @@ window.GALLERIES = {
     title: "Community & School",
     items: [
       { src: "media/photos/community/community-shelter-craft-table.jpg", title: "Shelter Craft Day", description: "A group activity with residents at a shelter courtyard." },
+      { src: "media/photos/community/community-shelter-juggling.jpg", title: "Teaching Juggling at the Shelter", description: "Leading a juggling activity for kids at a family shelter." },
       { src: "media/photos/community/school-graduation-day.jpg", title: "Graduation Day", description: "With classmates on graduation day." },
       { src: "media/photos/community/school-commencement.jpg", title: "Commencement", description: "The class gathered on the field for the ceremony." },
       { src: "media/photos/community/school-8th-grade-party.jpg", title: "8th-Grade Party", description: "Photo-booth fun with friends." }
