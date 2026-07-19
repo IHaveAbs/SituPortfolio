@@ -138,13 +138,10 @@ window.GALLERIES = {
 
   // ---------- SINGLE-GALLERY CATEGORIES ----------
   community: {
-    title: "Community & School",
+    title: "Shelter volunteer",
     items: [
       { src: "media/photos/community/community-shelter-craft-table.jpg", title: "Shelter Craft Day", description: "A group activity with residents at a shelter courtyard." },
-      { src: "media/photos/community/community-shelter-juggling.jpg", title: "Teaching Juggling at the Shelter", description: "Leading a juggling activity for kids at a family shelter." },
-      { src: "media/photos/community/school-graduation-day.jpg", title: "Graduation Day", description: "With classmates on graduation day." },
-      { src: "media/photos/community/school-commencement.jpg", title: "Commencement", description: "The class gathered on the field for the ceremony." },
-      { src: "media/photos/community/school-8th-grade-party.jpg", title: "8th-Grade Party", description: "Photo-booth fun with friends." }
+      { src: "media/photos/community/community-shelter-juggling.jpg", title: "Teaching Juggling at the Shelter", description: "Leading a juggling activity for kids at a family shelter." }
     ]
   },
   personal: {
@@ -155,7 +152,10 @@ window.GALLERIES = {
       { src: "media/photos/personal/personal-museum-pose.jpg", title: "Museum Mischief", description: "Mimicking a bronze sculpture at an art museum." },
       { src: "media/photos/personal/personal-cooking-class.jpg", title: "Cooking Class", description: "In a chef’s hat at a cooking class." },
       { src: "media/photos/personal/personal-family-portrait.jpg", title: "Family", description: "A family portrait." },
-      { src: "media/photos/personal/personal-family-portrait-2.jpg", title: "Family", description: "A family portrait at home." }
+      { src: "media/photos/personal/personal-family-portrait-2.jpg", title: "Family", description: "A family portrait at home." },
+      { src: "media/photos/personal/school-graduation-day.jpg", title: "Graduation Day", description: "With classmates on graduation day." },
+      { src: "media/photos/personal/school-commencement.jpg", title: "Commencement", description: "The class gathered on the field for the ceremony." },
+      { src: "media/photos/personal/school-8th-grade-party.jpg", title: "8th-Grade Party", description: "Photo-booth fun with friends." }
     ]
   }
 };

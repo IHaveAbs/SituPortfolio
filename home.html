@@ -1,8 +1,3 @@
-<div class="home-hero">
-    <h1>Situ Zhao</h1>
-    <p>Artist · C++ teacher · builder · varsity athlete — a look at what I do.</p>
-</div>
-
 <div class="showcase-grid" id="showcase"></div>
 
 <script>
@@ -12,30 +7,31 @@
         { type: "nav", img: "media/photos/community/community-shelter-juggling.jpg",
           title: "Teaching Juggling at the Shelter", sub: "Community service", badge: "Service",
           go: { category: "community", subcategory: "community", page: "gallery" } },
-        { type: "video", id: "KhB_bZHoecI", title: "Juggling", sub: "Watch me juggle", badge: "▶ Video" },
+        { type: "video", id: "KhB_bZHoecI", title: "Juggling", sub: "Watch me juggle", badge: "▶ Video", autoplay: true,
+          go: { category: "activities", subcategory: "juggling", page: "gallery" } },
         { type: "nav", img: "media/photos/activities/badminton/badminton-at-the-net.jpg",
-          title: "Varsity Badminton", sub: "2025–26 · champion team", badge: "Sports",
+          title: "Varsity Badminton", sub: "2025–26 · champion team", badge: "Sports", pos: "center top",
           go: { category: "activities", subcategory: "badminton", page: "gallery" } },
         // Row 2
         { type: "nav", img: "https://img.youtube.com/vi/zy1Xu0EkC6I/hqdefault.jpg",
           title: "Teaching C++ — Beginners", sub: "10-lesson class", badge: "Teaching",
           go: { category: "cpp-classes", subcategory: "cpp-beginner", page: "lessons" } },
-        { type: "nav", img: "media/photos/art/printmaking/print-seated-figures-interior.jpg",
-          title: "Seated Figures", sub: "Woodblock print — carving", badge: "Art",
-          go: { category: "art", subcategory: "printmaking", page: "gallery" } },
-        { type: "nav", img: "https://img.youtube.com/vi/c5xMl1FOZ70/hqdefault.jpg",
-          title: "Teaching C++ — Advanced", sub: "10-lesson class", badge: "Teaching",
-          go: { category: "cpp-classes", subcategory: "cpp-advanced", page: "lessons" } },
-        // Row 3
         { type: "nav", img: "media/photos/art/paintings/painting-mirror-lake-silver-key.jpg",
           title: "Mirror Lake", sub: "Scholastic Silver Key", badge: "Art",
           go: { category: "art", subcategory: "paintings", page: "gallery" } },
+        { type: "nav", img: "media/projects/hoopduels.jpg",
+          title: "HoopDuels", sub: "Java basketball game", badge: "Project",
+          go: { category: "projects", subcategory: "projects", page: "projects" } },
+        // Row 3
+        { type: "nav", img: "media/photos/art/printmaking/print-seated-figures-interior.jpg",
+          title: "Seated Figures", sub: "Woodblock print — carving", badge: "Art",
+          go: { category: "art", subcategory: "printmaking", page: "gallery" } },
         { type: "nav", img: "media/projects/iqcar.jpg",
           title: "IQ Car", sub: "Java puzzle game", badge: "Project",
           go: { category: "projects", subcategory: "projects", page: "projects" } },
-        { type: "nav", img: "media/projects/hoopduels.jpg",
-          title: "HoopDuels", sub: "Java basketball game", badge: "Project",
-          go: { category: "projects", subcategory: "projects", page: "projects" } }
+        { type: "nav", img: "https://img.youtube.com/vi/c5xMl1FOZ70/hqdefault.jpg",
+          title: "Teaching C++ — Advanced", sub: "10-lesson class", badge: "Teaching",
+          go: { category: "cpp-classes", subcategory: "cpp-advanced", page: "lessons" } }
     ];
 
     function esc(s) {
@@ -48,8 +44,33 @@
         var src = t.type === "video" ? ("https://img.youtube.com/vi/" + t.id + "/hqdefault.jpg") : t.img;
         var tile = document.createElement("div");
         tile.className = "showcase-tile";
+
+        // Autoplaying, looping video (muted — required for browser autoplay): render the iframe now.
+        // pointer-events:none lets a click fall through to the tile so it navigates like a nav tile.
+        if (t.type === "video" && t.autoplay) {
+            tile.innerHTML =
+                '<iframe style="pointer-events:none" src="https://www.youtube.com/embed/' + t.id +
+                '?autoplay=1&mute=1&loop=1&playlist=' + t.id + '&rel=0&playsinline=1&controls=0" ' +
+                'title="' + esc(t.title) + '" frameborder="0" ' +
+                'allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" ' +
+                "allowfullscreen></iframe>" +
+                (t.badge ? '<span class="showcase-badge">' + esc(t.badge) + "</span>" : "") +
+                '<div class="showcase-overlay">' +
+                '<div class="showcase-title">' + esc(t.title) + "</div>" +
+                (t.sub ? '<div class="showcase-sub">' + esc(t.sub) + "</div>" : "") +
+                "</div>";
+            if (t.go) {
+                tile.addEventListener("click", function () {
+                    if (window.goTo) window.goTo(t.go);
+                });
+            }
+            grid.appendChild(tile);
+            return;
+        }
+
         tile.innerHTML =
-            '<img loading="lazy" src="' + esc(src) + '" alt="' + esc(t.title) + '">' +
+            '<img loading="lazy" src="' + esc(src) + '" alt="' + esc(t.title) + '"' +
+            (t.pos ? ' style="object-position:' + esc(t.pos) + '"' : "") + ">" +
             (t.type === "video" ? '<span class="showcase-play">▶</span>' : "") +
             (t.badge ? '<span class="showcase-badge">' + esc(t.badge) + "</span>" : "") +
             '<div class="showcase-overlay">' +

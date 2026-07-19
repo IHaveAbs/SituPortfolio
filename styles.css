@@ -62,6 +62,8 @@ body {
     background: #fff;
     border-bottom: 1px solid #eceff3;
     padding: 8px 24px;
+    display: flex;
+    align-items: center;
 }
 
 .breadcrumb {
@@ -69,6 +71,31 @@ body {
     align-items: center;
     font-size: 13px;
     color: #6b7280;
+    flex: 0 0 auto;
+}
+
+/* Home title + tagline live on the breadcrumb row; shown only on the home page */
+.home-title,
+.home-tagline {
+    display: none;
+}
+.breadcrumb-bar.home-active .home-title {
+    display: block;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.6em;
+    font-weight: 300;
+    color: #2b2b3a;
+    margin: 0;
+    white-space: nowrap;
+}
+.breadcrumb-bar.home-active .home-tagline {
+    display: block;
+    margin: 0 0 0 auto;
+    color: #6b7280;
+    font-size: 0.95em;
+    text-align: right;
 }
 
 .breadcrumb-item {
@@ -669,27 +696,12 @@ body {
 /* =========================================================
    Home showcase grid (home.html)
    ========================================================= */
-.home-hero {
-    text-align: center;
-    padding: 30px 20px 6px;
-}
-.home-hero h1 {
-    font-size: 2.3em;
-    font-weight: 300;
-    color: #2b2b3a;
-    margin-bottom: 6px;
-}
-.home-hero p {
-    color: #6b7280;
-    font-size: 1.05em;
-}
-
 .showcase-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     max-width: 1200px;
-    margin: 18px auto 44px;
+    margin: 24px auto 44px;
     padding: 0 8px;
 }
 
@@ -776,7 +788,17 @@ body {
 
 @media (max-width: 860px) {
     .showcase-grid { grid-template-columns: repeat(2, 1fr); }
+    /* Tagline won't fit alongside the breadcrumb + centered title */
+    .breadcrumb-bar.home-active .home-tagline { display: none; }
+    .breadcrumb-bar.home-active .home-title { font-size: 1.35em; }
 }
 @media (max-width: 560px) {
     .showcase-grid { grid-template-columns: 1fr; }
+    /* Drop the title out of absolute-center so it can't overlap the breadcrumb */
+    .breadcrumb-bar.home-active .home-title {
+        position: static;
+        transform: none;
+        margin-left: auto;
+        font-size: 1.2em;
+    }
 }

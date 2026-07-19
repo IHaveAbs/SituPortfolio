@@ -62,6 +62,9 @@ function goTo({ category, subcategory, page }) {
     currentSubcategory = subcategory || category;
     currentPage = page;
 
+    const crumbBar = document.querySelector('.breadcrumb-bar');
+    if (crumbBar) crumbBar.classList.toggle('home-active', category === 'home');
+
     if (category === 'home') {
         loadPage('home.html');
         updateBreadcrumb(['Home']);
@@ -192,7 +195,7 @@ function getCategoryDisplayName(category) {
     const names = {
         'art': 'Art',
         'activities': 'Activities',
-        'community': 'Community & School',
+        'community': 'Shelter volunteer',
         'personal': 'Personal',
         'cpp-classes': 'C++ Classes',
         'projects': 'Projects'
