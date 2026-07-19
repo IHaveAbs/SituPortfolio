@@ -108,8 +108,14 @@ window.GALLERIES = {
     items: [
       { src: "media/photos/activities/badminton/badminton-at-the-net.jpg", title: "At the Net", description: "Warming up at the net in a Lynbrook jersey." },
       { src: "media/photos/activities/badminton/badminton-on-court.jpg", title: "On Court", description: "Ready on court in team colors." },
+      { src: "media/photos/activities/badminton/badminton-jump-smash.jpg", title: "Jump Smash", description: "A mid-air jump smash during a match." },
+      { src: "media/photos/activities/badminton/badminton-in-play.jpg", title: "In Play", description: "Reaching for a shot during a match." },
       { src: "media/photos/activities/badminton/badminton-varsity-team-2025-26.jpg", title: "Varsity Team 2025–26", description: "Lynbrook High School varsity badminton team." },
-      { src: "media/photos/activities/badminton/badminton-junior-varsity-team.jpg", title: "JV Team", description: "The Lynbrook junior varsity badminton team." }
+      { src: "media/photos/activities/badminton/badminton-junior-varsity-team.jpg", title: "JV Team", description: "The Lynbrook junior varsity badminton team." },
+      { src: "media/photos/activities/badminton/badminton-scval-champion-varsity-2025-26.jpg", title: "SCVAL Champions — Varsity 2025–26", description: "Santa Clara Valley Athletic League, De Anza Division championship — Varsity Badminton." },
+      { src: "media/photos/activities/badminton/badminton-scval-champion-jv-2024-25.jpg", title: "SCVAL Champions — JV 2024–25", description: "Santa Clara Valley Athletic League, De Anza Division championship — JV Badminton." },
+      { src: "media/photos/activities/badminton/badminton-scholar-athlete-varsity-2025-26.jpg", title: "Scholar Athlete — Varsity 2025–26", description: "Lynbrook HS Scholar Athlete Award for academics while playing varsity badminton." },
+      { src: "media/photos/activities/badminton/badminton-scholar-athlete-jv-2024-25.jpg", title: "Scholar Athlete — JV 2024–25", description: "Lynbrook HS Scholar Athlete Award for academics while playing JV badminton." }
     ]
   },
   juggling: {
