@@ -673,8 +673,12 @@ body {
 .project-image { display: block; background: #000; }
 .project-image img { width: 100%; height: 100%; min-height: 210px; object-fit: cover; display: block; }
 
+/* Cards without a screenshot use the full card width. */
+.project-card.no-image { grid-template-columns: 1fr; }
+
 .project-body { padding: 22px 26px; }
-.project-title { margin: 0 0 10px; color: #333; font-weight: 600; }
+.project-title { margin: 0 0 4px; color: #333; font-weight: 600; }
+.project-date { color: #888; font-size: 13px; margin-bottom: 12px; }
 .project-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
 .project-tag {
     font-size: 12px;

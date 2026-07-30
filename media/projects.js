@@ -1,17 +1,44 @@
 // Coding projects, shown on the Projects page.
+// Order matters: newest project first, oldest last.
 window.PROJECTS = [
   {
-    title: "IQ Car",
-    image: "media/projects/iqcar.jpg",
-    description: "A from-scratch Rush Hour puzzle game in Java. Slide the blocking cars out of the way to free the trapped red car — 9 hand-built levels across three difficulties, with click-to-select and arrow-key movement. No engine or libraries, just Swing and AWT.",
-    tags: ["Java", "Swing", "AWT"],
-    repo: "https://github.com/IHaveAbs/IQcar"
+    title: "SituPortfolio",
+    date: "July 2025 – present",
+    description: "This site. A hand-written portfolio — no framework, no build step — that holds the art galleries, the coding projects, and the recordings of the C++ classes I teach. Pages load as fragments through a small vanilla-JS router, and the galleries and lesson lists are generated from plain data files so adding work means editing one array. Still growing.",
+    tags: ["JavaScript", "HTML", "CSS", "GitHub Pages"],
+    repo: "https://github.com/IHaveAbs/SituPortfolio"
   },
   {
     title: "HoopDuels",
+    date: "Spring 2026",
     image: "media/projects/hoopduels.jpg",
-    description: "A basketball strategy game in Java/Swing built for AP Computer Science A. Coach an NBA team against the computer: call offensive plays, pick defensive schemes that shift the shooting odds, and watch every possession animate on the court until the clock runs out.",
-    tags: ["Java", "Swing", "AP CS A"],
+    description: "A basketball strategy game in Java/Swing, built with a team of three as our AP Computer Science A final project. Coach an NBA team against the computer: call offensive plays, pick defensive schemes that shift the shooting odds, and watch every possession animate on the court until the clock runs out.",
+    tags: ["Java", "Swing", "AP CS A", "Team of 3"],
     repo: "https://github.com/IHaveAbs/HoopDuels"
+  },
+  {
+    title: "VisionVoice",
+    date: "April 2024",
+    description: "A Chrome extension (Manifest V3) for visually impaired users: hover over any text on a page and it is magnified and read aloud through Chrome's built-in text-to-speech engine. Built overnight with one teammate at Hack Cupertino, then published to the Chrome Web Store.",
+    tags: ["JavaScript", "Chrome Extension", "Manifest V3", "Hackathon"],
+    repo: "https://github.com/IHaveAbs/CupertinoHackathon2"
+  },
+  {
+    title: "Arduino LCD Name Display",
+    date: "Summer 2023",
+    image: "media/projects/arduino-display.jpg",
+    description: "A two-row LCD name display wired up on a breadboard and driven by an Arduino. The LiquidCrystal library runs the screen in 4-bit mode, which halves the data pins it needs and leaves the rest of the microcontroller free. The original sketch was lost years ago — the repo is an honest reconstruction from this photo of the working circuit.",
+    tags: ["Arduino", "C++", "Electronics"],
+    repo: "https://github.com/IHaveAbs/arduino_display"
+  },
+  {
+    title: "IQ Car",
+    date: "2022",
+    image: "media/projects/iqcar.jpg",
+    description: "A from-scratch Rush Hour puzzle game in Java. Slide the blocking cars out of the way to free the trapped red car — 9 hand-built levels across three difficulties, with click-to-select and arrow-key movement. No engine or libraries, just Swing and AWT.",
+    tags: ["Java", "Swing", "AWT"],
+    repo: "https://github.com/IHaveAbs/IQcar",
+    demo: "https://www.youtube.com/watch?v=H4gfGS0kYtM",
+    demoLabel: "Watch demo"
   }
 ];

@@ -28,7 +28,7 @@
 
         var links = "";
         if (p.repo) links += '<a class="lesson-btn" href="' + esc(p.repo) + '" target="_blank" rel="noopener">View on GitHub</a>';
-        if (p.demo) links += '<a class="lesson-btn ghost" href="' + esc(p.demo) + '" target="_blank" rel="noopener">Live demo</a>';
+        if (p.demo) links += '<a class="lesson-btn ghost" href="' + esc(p.demo) + '" target="_blank" rel="noopener">' + esc(p.demoLabel || "Live demo") + "</a>";
 
         var imageHTML = p.image
             ? '<a href="' + esc(p.repo || "#") + '" target="_blank" rel="noopener" class="project-image">' +
@@ -36,11 +36,12 @@
             : "";
 
         var card = document.createElement("div");
-        card.className = "project-card";
+        card.className = p.image ? "project-card" : "project-card no-image";
         card.innerHTML =
             imageHTML +
             '<div class="project-body">' +
                 '<h2 class="project-title">' + esc(p.title) + "</h2>" +
+                (p.date ? '<div class="project-date">' + esc(p.date) + "</div>" : "") +
                 '<div class="project-tags">' + tags + "</div>" +
                 '<p class="project-desc">' + esc(p.description) + "</p>" +
                 '<div class="lesson-links">' + links + "</div>" +
