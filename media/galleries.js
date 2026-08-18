@@ -121,7 +121,8 @@ window.GALLERIES = {
   juggling: {
     title: "Juggling",
     videos: [
-      { id: "KhB_bZHoecI", title: "Juggling" }
+      { id: "KhB_bZHoecI", title: "Juggling" },
+      { id: "cUVBFTwbc_M", title: "Five-ball cascade" }
     ],
     items: [
       { src: "media/photos/activities/juggling/juggling-outdoor-practice.jpg", title: "Outdoor Practice", description: "Juggling beanbags with friends on a sunny lawn." },
