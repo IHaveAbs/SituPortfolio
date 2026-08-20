@@ -5,6 +5,7 @@ let currentSubcategory = '';
 // Which fragment file renders a given nav page type.
 function pageFileFor(page) {
     if (page === 'lessons') return 'lessons.html';
+    if (page === 'testimonials') return 'testimonials.html';
     if (page === 'projects') return 'projects.html';
     return 'gallery.html';
 }
@@ -218,7 +219,8 @@ function getSubcategoryDisplayName(subcategory) {
         'chess': 'Chess',
         // C++ Classes
         'cpp-beginner': 'Beginner',
-        'cpp-advanced': 'Advanced'
+        'cpp-advanced': 'Advanced',
+        'cpp-feedback': 'What Parents Said'
     };
     return names[subcategory] || subcategory;
 }
