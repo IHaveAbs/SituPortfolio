@@ -34,7 +34,7 @@ window.PROJECTS = [
     title: "Arduino LCD Name Display",
     date: "Summer 2023",
     image: "media/projects/arduino-display.jpg",
-    description: "A two-row LCD name display wired up on a breadboard and driven by an Arduino. The LiquidCrystal library runs the screen in 4-bit mode, which halves the data pins it needs and leaves the rest of the microcontroller free. The original sketch was lost years ago — the repo is an honest reconstruction from this photo of the working circuit.",
+    description: "A small embedded-systems project: an Arduino-compatible board drives a two-row display LCD to show my name across its two rows.",
     tags: ["Arduino", "C++", "Electronics"],
     repo: "https://github.com/IHaveAbs/arduino_display"
   },
