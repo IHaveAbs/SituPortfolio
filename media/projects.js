@@ -9,6 +9,13 @@ window.PROJECTS = [
     repo: "https://github.com/IHaveAbs/SituPortfolio"
   },
   {
+    title: "FocusGate",
+    date: "Summer 2026",
+    description: "A Chrome extension (Manifest V3) for intentional social media use. Before a distracting site opens, it asks you to state your purpose, then keeps that goal pinned at the top of the page while you browse. Built as a personal tool to curb compulsive scrolling.",
+    tags: ["JavaScript", "Chrome Extension", "Manifest V3"],
+    repo: "https://github.com/IHaveAbs/FocusGate"
+  },
+  {
     title: "HoopDuels",
     date: "Spring 2026",
     image: "media/projects/hoopduels.jpg",
