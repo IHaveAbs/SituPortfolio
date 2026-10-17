@@ -1,6 +1,6 @@
 # Situ's Portfolio
 
-A personal portfolio website showcasing a collection of art, programming projects, and AI innovations.
+A personal portfolio website showcasing a collection of art, activities, C++ classess, Badminton, Shelter volunteer, projects and personal photos.
 
 
 ## Running Locally

@@ -6,6 +6,7 @@ window.GALLERIES = {
   paintings: {
     title: "Paintings",
     items: [
+      { src: "media/photos/art/paintings/situ.jpg", title: "Self-Portrait", description: "An oil self-portrait with paintbrushes, a badminton shuttlecock, and IC chips." },
       { src: "media/photos/art/paintings/painting-mirror-lake-silver-key.jpg", title: "Mirror Lake — Silver Key", description: "Scholastic Art Silver Key (2023). An autumn lily pond, its still water mirroring red and gold foliage." },
       { src: "media/photos/art/paintings/painting-portofino-harbor.jpg", title: "Portofino Harbor", description: "A sunlit Mediterranean harbor with boats reflected in calm blue water." },
       { src: "media/photos/art/paintings/painting-stone-bridge-village.jpg", title: "Stone Bridge Village", description: "A quiet European village with a stone arch bridge over a green stream." },
