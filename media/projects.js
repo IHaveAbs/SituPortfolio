@@ -4,7 +4,7 @@ window.PROJECTS = [
   {
     title: "SituPortfolio",
     date: "July 2025 – present",
-    description: "This site. A hand-written portfolio — no framework, no build step — that holds the art galleries, the coding projects, and the recordings of the C++ classes I teach. Pages load as fragments through a small vanilla-JS router, and the galleries and lesson lists are generated from plain data files so adding work means editing one array. Still growing.",
+    description: "This site, my portfolio that holds the art galleries, the coding projects, badminton photos, juggling videos and photos, and the recordings of the C++ classes I teach.",
     tags: ["JavaScript", "HTML", "CSS", "GitHub Pages"],
     repo: "https://github.com/IHaveAbs/SituPortfolio"
   },
