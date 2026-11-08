@@ -7,8 +7,8 @@ window.LESSONS = {
     lessons: [
       { n: 1,  material: "https://docs.google.com/presentation/d/1vmrOOF1lVqzJ3p1HHz90YNV53sYGccKhrIcH-UEP5oM/edit?usp=classroom_web&authuser=0", video: "zy1Xu0EkC6I" },
       { n: 2,  material: "https://docs.google.com/presentation/d/1irmTNKwLLAP2GvJ-zRcyCW6dlbX8UCzn62TSv7Co_NQ/edit?usp=classroom_web&authuser=0", video: "MuayczOx52E" },
-      { n: 3,  material: "https://drive.google.com/file/d/1QpUw12XeaNRVZXzSHFGnI-Tj39dDUNfY/view?usp=classroom_web&authuser=0", video: "MCC7R_dtsUw" },
-      { n: 4,  material: null, video: "nfmDZvts7eg" },
+      { n: 3,  material: "https://docs.google.com/presentation/d/1YqG-NRZKfXL2OeKMU5Bbgy45yFAfFepUOjDihmTcWCg/edit?usp=sharing", video: "MCC7R_dtsUw" },
+      { n: 4,  material: "https://docs.google.com/presentation/d/1htJ52P4nBVDTgBbUs_M4KMcox27b4SIXoum3pqHUtEY/edit?usp=sharing", video: "nfmDZvts7eg" },
       { n: 5,  material: "https://docs.google.com/presentation/d/11tEsOTiFNeR1evKpXDUK-HF6e37oS242sQePj0f_4uM/edit?usp=classroom_web&authuser=0", video: "CSVzETDzcPo" },
       { n: 6,  material: "https://docs.google.com/presentation/d/1UwOc5I4s2R9udoYUVxhNp1hBODQBN64WiQ0-IID-dFc/edit?usp=classroom_web&authuser=0", video: "AhJrOuRAaOE" },
       { n: 7,  material: "https://docs.google.com/presentation/d/1Rmneoa6VAdAIxVXCq9B12PChuFzJqwtjRCVWeGczOQU/edit?usp=classroom_web&authuser=0", video: "AnxRAEzdUqU" },
